@@ -1,0 +1,1045 @@
+:root {
+  color: #17211f;
+  background: #f4f6f1;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --bg: #f4f6f1;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-solid: #ffffff;
+  --ink: #17211f;
+  --muted: #66736e;
+  --line: rgba(21, 31, 29, 0.08);
+  --primary: #0767b0;
+  --primary-soft: #dcecff;
+  --positive: #16865f;
+  --positive-soft: #e4f8ec;
+  --warning: #b45309;
+  --warning-soft: #fff3da;
+  --danger: #c2413d;
+  --danger-soft: #fde8e6;
+  --shadow: 0 18px 44px rgba(31, 41, 55, 0.1);
+  --shadow-soft: 0 10px 28px rgba(31, 41, 55, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(15, 118, 110, 0.18), transparent 240px),
+    radial-gradient(circle at 90% 18%, rgba(245, 158, 11, 0.14), transparent 220px),
+    linear-gradient(180deg, #f7faf4 0%, var(--bg) 42%, #eef3ef 100%);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+button:active,
+.navItem:active,
+.categorySummaryCard:active,
+.budgetEditCard:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.appShell {
+  width: min(100%, 760px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: calc(10px + env(safe-area-inset-top)) 14px calc(106px + env(safe-area-inset-bottom));
+}
+
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 2px 14px;
+  background: linear-gradient(180deg, rgba(244, 246, 241, 0.95), rgba(244, 246, 241, 0.72));
+  backdrop-filter: blur(20px);
+}
+
+.eyebrow,
+.pageHeader p,
+.sectionHeader p,
+.miniMetrics,
+.summaryRow span,
+.expenseRow span,
+.expenseRow em,
+.statusMessage,
+.categoryStat p,
+.backupCard p,
+.emptyState span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.83rem;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  color: var(--ink);
+  font-size: 1.55rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 1.22rem;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+h3 {
+  margin-bottom: 0;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.roundButton,
+.primaryButton,
+.ghostButton,
+.dangerButton {
+  min-height: 44px;
+  border-radius: 18px;
+  font-weight: 800;
+}
+
+.roundButton {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: var(--surface-solid);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+}
+
+.mainContent,
+.pageStack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pageHeader,
+.sectionHeader,
+.sectionTitleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.pageHeader.compact {
+  margin-top: 4px;
+}
+
+.monthPicker {
+  min-width: 142px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.statsGrid.twoByTwo {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.statCard,
+.formPanel,
+.listPanel,
+.chartPanel,
+.expenseFormPanel,
+.backupCard,
+.heroCard,
+.categorySummaryCard,
+.budgetEditCard,
+.categoryManageCard,
+.transactionCard {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+}
+
+.statCard {
+  min-height: 98px;
+  padding: 16px 14px;
+  border-radius: 24px;
+}
+
+.statCard span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 760;
+}
+
+.statCard strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: clamp(1rem, 3vw, 1.22rem);
+  line-height: 1.16;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.statCard.good strong,
+.positive {
+  color: var(--positive);
+}
+
+.statCard.bad strong,
+.negative {
+  color: var(--danger);
+}
+
+.heroCard {
+  display: grid;
+  gap: 20px;
+  overflow: hidden;
+  padding: 22px;
+  border-radius: 30px;
+  background:
+    linear-gradient(135deg, rgba(7, 103, 176, 0.96), rgba(38, 132, 199, 0.84)),
+    var(--primary);
+  color: #ffffff;
+  box-shadow: 0 22px 54px rgba(7, 103, 176, 0.22);
+}
+
+.heroCard.overBudget {
+  background:
+    linear-gradient(135deg, rgba(180, 83, 9, 0.95), rgba(194, 65, 61, 0.82)),
+    var(--warning);
+  box-shadow: 0 22px 54px rgba(180, 83, 9, 0.18);
+}
+
+.heroTop,
+.heroMetrics,
+.cardTitleLine,
+.categoryStatTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.heroLabel,
+.heroMetrics span,
+.progressMeta span {
+  display: block;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.heroTop strong {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(1.95rem, 9vw, 3rem);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.heroMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.heroMetrics div {
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.heroMetrics b {
+  display: block;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+}
+
+.statusPill {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.progressBlock {
+  display: grid;
+  gap: 8px;
+}
+
+.progressMeta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progressMeta b {
+  color: #ffffff;
+}
+
+.progressBar {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.12);
+}
+
+.heroCard .progressBar {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.progressBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #34d399, #facc15);
+  transition: width 260ms ease;
+}
+
+.progressBar.warning span {
+  background: linear-gradient(90deg, #f59e0b, #ef7770);
+}
+
+.categoryCardGrid,
+.budgetCardList,
+.categoryManageGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.categoryCardGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.categorySummaryCard,
+.budgetEditCard,
+.categoryManageCard {
+  display: grid;
+  gap: 12px;
+  border-radius: 24px;
+  padding: 16px;
+}
+
+.categorySummaryCard.warningCard,
+.budgetEditCard.warningCard {
+  border-color: rgba(180, 83, 9, 0.18);
+  background: linear-gradient(180deg, #ffffff, var(--warning-soft));
+}
+
+.cardTitleLine strong,
+.categoryStatTop strong,
+.transactionCard strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardTitleLine span,
+.miniMetrics span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardTitleLine span {
+  max-width: 58%;
+  text-align: right;
+}
+
+.miniMetrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.formPanel,
+.chartPanel,
+.expenseFormPanel,
+.backupCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 28px;
+}
+
+.field,
+.moneyField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #40504b;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.compactField {
+  min-width: 132px;
+}
+
+.field input,
+.field select,
+.moneyField input,
+.inlineMoneyInput input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid #d8e1dc;
+  border-radius: 18px;
+  padding: 0 15px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink);
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.moneyField input {
+  min-height: 74px;
+  border-radius: 24px;
+  font-size: clamp(1.75rem, 9vw, 2.6rem);
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.field input:focus,
+.field select:focus,
+.moneyField input:focus,
+.inlineMoneyInput input:focus {
+  border-color: var(--primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+}
+
+.inlineMoneyInput {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.chipGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.categoryChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+  color: var(--ink);
+  font-weight: 800;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.categoryChip i,
+.categoryAvatar,
+.backupIcon,
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.categoryChip i {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+}
+
+.categoryChip.active {
+  border-color: rgba(15, 118, 110, 0.28);
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 12px 26px rgba(15, 118, 110, 0.18);
+}
+
+.categoryChip.active i {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.primaryButton {
+  width: 100%;
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 14px 28px rgba(15, 118, 110, 0.22);
+}
+
+.primaryButton:hover {
+  box-shadow: 0 18px 34px rgba(15, 118, 110, 0.26);
+}
+
+.ghostButton {
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 0 14px;
+}
+
+.dangerButton {
+  background: var(--danger-soft);
+  color: var(--danger);
+  padding: 0 14px;
+}
+
+.smallButton {
+  min-height: 46px;
+  border-radius: 16px;
+}
+
+.fullButton {
+  width: 100%;
+}
+
+.stickyAction {
+  position: sticky;
+  bottom: calc(92px + env(safe-area-inset-bottom));
+  z-index: 3;
+}
+
+.listPanel {
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.summaryRow,
+.actionRow,
+.expenseRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px;
+  border-bottom: 1px solid #edf1ee;
+}
+
+.summaryRow:last-child,
+.actionRow:last-child,
+.expenseRow:last-child {
+  border-bottom: 0;
+}
+
+.summaryRow div,
+.expenseRow div {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.summaryRow b,
+.expenseRow strong {
+  overflow-wrap: anywhere;
+}
+
+.expenseRow em {
+  font-style: normal;
+}
+
+.rowActions {
+  display: flex;
+  gap: 8px;
+}
+
+.emptyState {
+  display: grid;
+  gap: 8px;
+  place-items: center;
+  padding: 28px 18px;
+  border: 1px dashed rgba(15, 118, 110, 0.2);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--muted);
+  text-align: center;
+}
+
+.emptyState strong {
+  color: var(--ink);
+}
+
+.emptyIcon {
+  width: 44px;
+  height: 44px;
+}
+
+.barList {
+  display: grid;
+  gap: 12px;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: 46px 1fr minmax(94px, auto);
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  font-size: 0.82rem;
+}
+
+.barRow b {
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+.barTrack {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e3ebe6;
+}
+
+.barTrack.large {
+  height: 12px;
+}
+
+.barTrack i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary), #f59e0b);
+  transition: width 260ms ease;
+}
+
+.dailyChart {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8px, 1fr));
+  align-items: end;
+  gap: 5px;
+  min-height: 154px;
+  overflow: hidden;
+  padding: 10px 4px 0;
+}
+
+.dailyBar {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 6px;
+  min-width: 0;
+  height: 144px;
+}
+
+.dailyBarTrack {
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8eee9;
+}
+
+.dailyBarTrack i {
+  display: block;
+  width: 100%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, #f59e0b, var(--primary));
+  transition: height 260ms ease;
+}
+
+.dailyBar span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.62rem;
+  text-align: center;
+  text-overflow: clip;
+}
+
+.categoryStat {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 18px;
+  background: #f8faf8;
+}
+
+.timelineList {
+  display: grid;
+  gap: 18px;
+}
+
+.timelineGroup {
+  display: grid;
+  gap: 10px;
+}
+
+.timelineDate {
+  position: sticky;
+  top: 76px;
+  z-index: 2;
+  width: fit-content;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(23, 33, 31, 0.86);
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 850;
+  backdrop-filter: blur(10px);
+}
+
+.timelineItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+}
+
+.timelineItem::before {
+  position: absolute;
+  top: 18px;
+  bottom: -18px;
+  left: 8px;
+  width: 2px;
+  border-radius: 999px;
+  background: #dfe7e2;
+  content: "";
+}
+
+.timelineGroup .timelineItem:last-child::before {
+  display: none;
+}
+
+.timelineDot {
+  position: relative;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  margin-top: 18px;
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.18);
+}
+
+.transactionCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 22px;
+}
+
+.transactionCard div:first-child {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.transactionCard span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transactionAmount {
+  display: grid;
+  flex: 0 0 auto;
+  gap: 6px;
+  justify-items: end;
+}
+
+.transactionAmount b {
+  color: var(--danger);
+  font-size: 0.95rem;
+  max-width: 148px;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+.transactionAmount button {
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.categoryManageGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.categoryManageCard {
+  align-content: start;
+}
+
+.categoryAvatar,
+.backupIcon {
+  width: 46px;
+  height: 46px;
+}
+
+.categoryManageCard strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.categoryManageCard .rowActions {
+  margin-top: 4px;
+}
+
+.categoryManageCard .ghostButton,
+.categoryManageCard .dangerButton {
+  flex: 1;
+  min-height: 40px;
+  border-radius: 14px;
+  padding: 0 8px;
+}
+
+.backupCard {
+  align-items: stretch;
+  text-align: left;
+}
+
+.backupCard h3 {
+  margin-top: 2px;
+}
+
+.backupIcon {
+  margin-bottom: 2px;
+  font-size: 1.3rem;
+}
+
+.statusMessage,
+.toastMessage {
+  border-radius: 16px;
+  background: var(--positive-soft);
+  color: var(--positive);
+  font-weight: 800;
+}
+
+.statusMessage {
+  padding: 12px;
+}
+
+.toastMessage {
+  position: fixed;
+  right: 18px;
+  bottom: calc(172px + env(safe-area-inset-bottom));
+  left: 18px;
+  z-index: 20;
+  width: min(calc(100% - 36px), 420px);
+  margin: 0 auto;
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.bottomNav {
+  position: fixed;
+  right: 12px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  left: 12px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  width: min(calc(100% - 24px), 736px);
+  margin: 0 auto;
+  padding: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.17);
+  backdrop-filter: blur(18px);
+}
+
+.navItem {
+  display: grid;
+  min-width: 0;
+  min-height: 56px;
+  place-items: center;
+  gap: 3px;
+  border-radius: 21px;
+  color: var(--muted);
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.navItem span {
+  font-size: 1.18rem;
+  line-height: 1;
+}
+
+.navItem small {
+  overflow: hidden;
+  max-width: 100%;
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navItem.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(15, 118, 110, 0.18);
+}
+
+@media (max-width: 560px) {
+  .appShell {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .pageHeader,
+  .sectionHeader {
+    flex-direction: column;
+  }
+
+  .monthPicker {
+    width: 100%;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statsGrid.twoByTwo,
+  .categoryCardGrid,
+  .categoryManageGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .heroTop {
+    flex-direction: column;
+  }
+
+  .barRow {
+    grid-template-columns: 42px 1fr;
+  }
+
+  .barRow b {
+    grid-column: 2;
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 380px) {
+  .appShell {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .heroCard,
+  .formPanel,
+  .chartPanel,
+  .expenseFormPanel,
+  .backupCard {
+    border-radius: 24px;
+    padding: 14px;
+  }
+
+  .heroMetrics,
+  .chipGrid,
+  .statsGrid.twoByTwo,
+  .categoryCardGrid,
+  .categoryManageGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .transactionCard {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .transactionAmount {
+    width: 100%;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    justify-items: start;
+  }
+}
