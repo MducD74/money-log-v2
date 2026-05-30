@@ -90,6 +90,8 @@ button:disabled {
   padding: 10px 2px 14px;
   background: linear-gradient(180deg, rgba(244, 246, 241, 0.95), rgba(244, 246, 241, 0.72));
   backdrop-filter: blur(20px);
+  border-radius: 0 0 24px 24px;
+  margin-bottom: 18px;
 }
 
 .eyebrow,
